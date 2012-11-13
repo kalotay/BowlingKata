@@ -5,7 +5,6 @@
         public int Score { get; private set; }
         public int FrameScore { get; private set; }
 
-        private int _bonusReach;
         private int _nextBonusMultiplier;
         private int _nextNextBonusMultiplier;
 
@@ -13,7 +12,6 @@
         {
             Score = 0;
             FrameScore = 0;
-            _bonusReach = 0;
             _nextBonusMultiplier = 1;
             _nextNextBonusMultiplier = 1;
         }
@@ -49,11 +47,6 @@
                     _nextNextBonusMultiplier += 1;
                 }
             }
-        }
-
-        private bool IsBonus()
-        {
-            return _bonusReach > 0;
         }
     }
 }
