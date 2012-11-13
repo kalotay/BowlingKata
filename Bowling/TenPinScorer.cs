@@ -16,7 +16,7 @@
             _isBonus = false;
         }
 
-        public void Register(object roll)
+        public void Register(Roll roll)
         {
             _rollCount += 1;
             if (IsAtNewFrame())
@@ -24,7 +24,7 @@
                 FrameScore = 0;
             }
 
-            var score = ((Roll) roll).Score;
+            var score = roll.Score;
             FrameScore += score;
             Score += score;
 

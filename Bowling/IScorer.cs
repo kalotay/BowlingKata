@@ -3,6 +3,6 @@
     public interface IScorer
     {
         int Score { get; }
-        void Register(object roll);
+        void Register(Roll roll);
     }
 }
