@@ -28,5 +28,14 @@ namespace Bowling.Tests
 
             Assert.That(_scorer.Score, Is.EqualTo(1));
         }
+
+        [Test]
+        public void OnePinFollowedByOnePinScoresTwo()
+        {
+            _scorer.Register(1);
+            _scorer.Register(1);
+
+            Assert.That(_scorer.Score, Is.EqualTo(2));
+        }
     }
 }
