@@ -3,6 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling", "Bowling\Bowling.csproj", "{8DAAC20D-20F9-44C5-A380-34F6371A5F0C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling.Tests", "Bowling.Tests\Bowling.Tests.csproj", "{8653589C-B482-40D2-A90A-4C3AA82A3BE8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{69103583-B08B-4390-9B22-707EB6D6BF1D}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +22,10 @@ Global
 		{8DAAC20D-20F9-44C5-A380-34F6371A5F0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DAAC20D-20F9-44C5-A380-34F6371A5F0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DAAC20D-20F9-44C5-A380-34F6371A5F0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8653589C-B482-40D2-A90A-4C3AA82A3BE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8653589C-B482-40D2-A90A-4C3AA82A3BE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8653589C-B482-40D2-A90A-4C3AA82A3BE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8653589C-B482-40D2-A90A-4C3AA82A3BE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
