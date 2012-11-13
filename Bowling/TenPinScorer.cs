@@ -5,13 +5,13 @@
         public int Score { get; private set; }
         public int FrameScore { get; private set; }
 
-        private bool _isBonus;
+        private int _bonusReach;
 
         public TenPinScorer()
         {
             Score = 0;
             FrameScore = 0;
-            _isBonus = false;
+            _bonusReach = 0;
         }
 
         public void Register(IRoll roll)
@@ -25,12 +25,25 @@
             FrameScore += score;
             Score += score;
 
-            if (_isBonus)
+            if (IsBonus())
             {
                 Score += score;
+                _bonusReach -= 1;
             }
 
-            _isBonus = FrameScore == 10;
+            if (FrameScore == 10)
+            {
+                _bonusReach += 1;
+                if (roll is FirstRoll)
+                {
+                    _bonusReach += 1;
+                }
+            }
+        }
+
+        private bool IsBonus()
+        {
+            return _bonusReach > 0;
         }
     }
 }

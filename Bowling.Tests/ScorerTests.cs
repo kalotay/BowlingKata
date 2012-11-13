@@ -58,5 +58,15 @@ namespace Bowling.Tests
 
             Assert.That(_scorer.Score, Is.EqualTo(11));
         }
+
+        [Test]
+        public void StrikeFollowedByThreeFollowedBySixScoresTwentyEight()
+        {
+            _scorer.Register(new FirstRoll(10));
+            _scorer.Register(new FirstRoll(3));
+            _scorer.Register(new SecondRoll(6));
+
+            Assert.That(_scorer.Score, Is.EqualTo(28));
+        }
     }
 }
