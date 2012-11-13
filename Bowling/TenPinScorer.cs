@@ -16,7 +16,9 @@
 
         public void Register(IRoll roll)
         {
-            if (roll is FirstRoll)
+            var atFirstRoll = roll is FirstRoll;
+
+            if (atFirstRoll)
             {
                 FrameScore = 0;
             }
@@ -34,7 +36,7 @@
             if (FrameScore == 10)
             {
                 _bonusReach += 1;
-                if (roll is FirstRoll)
+                if (atFirstRoll)
                 {
                     _bonusReach += 1;
                 }
