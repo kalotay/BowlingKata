@@ -2,15 +2,16 @@
 {
     public class TenPinScorer: IScorer
     {
-        private int _frameScore;
+        public int Score { get; private set; }
+        public int FrameScore { get; private set; }
+
         private int _rollCount;
         private bool _isBonus;
-        public int Score { get; private set; }
 
         public TenPinScorer()
         {
             Score = 0;
-            _frameScore = 0;
+            FrameScore = 0;
             _rollCount = 0;
             _isBonus = false;
         }
@@ -20,11 +21,11 @@
             _rollCount += 1;
             if (IsAtNewFrame())
             {
-                _frameScore = 0;
+                FrameScore = 0;
             }
 
             var score = (int) roll;
-            _frameScore += score;
+            FrameScore += score;
             Score += score;
 
             if (_isBonus)
@@ -32,7 +33,7 @@
                 Score += score;
             }
 
-            _isBonus = _frameScore == 10;
+            _isBonus = FrameScore == 10;
 
         }
 
