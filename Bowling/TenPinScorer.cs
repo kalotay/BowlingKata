@@ -24,7 +24,7 @@
                 FrameScore = 0;
             }
 
-            var score = (int) roll;
+            var score = ((Roll) roll).Score;
             FrameScore += score;
             Score += score;
 

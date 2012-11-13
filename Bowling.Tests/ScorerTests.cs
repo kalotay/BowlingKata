@@ -16,7 +16,7 @@ namespace Bowling.Tests
         [Test]
         public void OneGutterBallScoresZero()
         {
-            _scorer.Register(0);
+            _scorer.Register(new FirstRoll(0));
 
             Assert.That(_scorer.Score, Is.EqualTo(0));
         }
@@ -24,7 +24,7 @@ namespace Bowling.Tests
         [Test]
         public void OnePinKnockedDownScoresOne()
         {
-            _scorer.Register(1);
+            _scorer.Register(new FirstRoll(1));
 
             Assert.That(_scorer.Score, Is.EqualTo(1));
         }
@@ -32,8 +32,8 @@ namespace Bowling.Tests
         [Test]
         public void OnePinFollowedByOnePinScoresTwo()
         {
-            _scorer.Register(1);
-            _scorer.Register(1);
+            _scorer.Register(new FirstRoll(1));
+            _scorer.Register(new SecondRoll(1));
 
             Assert.That(_scorer.Score, Is.EqualTo(2));
         }
@@ -41,9 +41,9 @@ namespace Bowling.Tests
         [Test]
         public void SpareFollowedByFourPinsScoresEighteen()
         {
-            _scorer.Register(7);
-            _scorer.Register(3);
-            _scorer.Register(4);
+            _scorer.Register(new FirstRoll(7));
+            _scorer.Register(new SecondRoll(3));
+            _scorer.Register(new FirstRoll(4));
 
             Assert.That(_scorer.Score, Is.EqualTo(18));
         }
@@ -51,10 +51,10 @@ namespace Bowling.Tests
         [Test]
         public void GutterFollowedByTwoFivesFollowedByOneScoresEleven()
         {
-            _scorer.Register(0);
-            _scorer.Register(5);
-            _scorer.Register(5);
-            _scorer.Register(1);
+            _scorer.Register(new FirstRoll(0));
+            _scorer.Register(new SecondRoll(5));
+            _scorer.Register(new FirstRoll(5));
+            _scorer.Register(new SecondRoll(1));
 
             Assert.That(_scorer.Score, Is.EqualTo(11));
         }
