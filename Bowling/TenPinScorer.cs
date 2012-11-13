@@ -2,25 +2,43 @@
 {
     public class TenPinScorer: IScorer
     {
-        private int _previousScore;
-        private int _scoreMultiplier;
+        private int _frameScore;
+        private int _rollCount;
+        private bool _isBonus;
         public int Score { get; private set; }
 
         public TenPinScorer()
         {
             Score = 0;
-            _scoreMultiplier = 1;
+            _frameScore = 0;
+            _rollCount = 0;
+            _isBonus = false;
         }
 
         public void Register(object roll)
         {
+            _rollCount += 1;
+            if (IsAtNewFrame())
+            {
+                _frameScore = 0;
+            }
+
             var score = (int) roll;
+            _frameScore += score;
+            Score += score;
 
-            Score += _scoreMultiplier * score;
+            if (_isBonus)
+            {
+                Score += score;
+            }
 
-            _scoreMultiplier = (score + _previousScore) == 10 ? 2 : 1;
+            _isBonus = _frameScore == 10;
 
-            _previousScore = score;
+        }
+
+        private bool IsAtNewFrame()
+        {
+            return (_rollCount % 2) == 1;
         }
     }
 }

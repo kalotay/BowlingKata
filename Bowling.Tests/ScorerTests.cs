@@ -47,5 +47,16 @@ namespace Bowling.Tests
 
             Assert.That(_scorer.Score, Is.EqualTo(18));
         }
+
+        [Test]
+        public void GutterFollowedByTwoFivesFollowedByOneScoresEleven()
+        {
+            _scorer.Register(0);
+            _scorer.Register(5);
+            _scorer.Register(5);
+            _scorer.Register(1);
+
+            Assert.That(_scorer.Score, Is.EqualTo(11));
+        }
     }
 }
