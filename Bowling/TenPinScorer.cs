@@ -5,21 +5,18 @@
         public int Score { get; private set; }
         public int FrameScore { get; private set; }
 
-        private int _rollCount;
         private bool _isBonus;
 
         public TenPinScorer()
         {
             Score = 0;
             FrameScore = 0;
-            _rollCount = 0;
             _isBonus = false;
         }
 
         public void Register(Roll roll)
         {
-            _rollCount += 1;
-            if (IsAtNewFrame())
+            if (roll is FirstRoll)
             {
                 FrameScore = 0;
             }
@@ -34,12 +31,6 @@
             }
 
             _isBonus = FrameScore == 10;
-
-        }
-
-        private bool IsAtNewFrame()
-        {
-            return (_rollCount % 2) == 1;
         }
     }
 }
