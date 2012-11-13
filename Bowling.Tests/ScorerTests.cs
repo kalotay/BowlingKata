@@ -20,5 +20,13 @@ namespace Bowling.Tests
 
             Assert.That(_scorer.Score, Is.EqualTo(0));
         }
+
+        [Test]
+        public void OnePinKnockedDownScoresOne()
+        {
+            _scorer.Register(1);
+
+            Assert.That(_scorer.Score, Is.EqualTo(1));
+        }
     }
 }
