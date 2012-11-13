@@ -68,5 +68,19 @@ namespace Bowling.Tests
 
             Assert.That(_scorer.Score, Is.EqualTo(28));
         }
+
+        [Test]
+        public void PerfectGameScoresThreehundred()
+        {
+            for (var i = 0; i < 10; i++)
+            {
+                _scorer.Register(new FirstRoll(10));
+            }
+
+            _scorer.Register(new BonusRoll(10));
+            _scorer.Register(new BonusRoll(10));
+
+            Assert.That(_scorer.Score, Is.EqualTo(300));
+        }
     }
 }
