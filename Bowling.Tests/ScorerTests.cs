@@ -37,5 +37,15 @@ namespace Bowling.Tests
 
             Assert.That(_scorer.Score, Is.EqualTo(2));
         }
+
+        [Test]
+        public void SpareFollowedByFourPinsScoresEighteen()
+        {
+            _scorer.Register(7);
+            _scorer.Register(3);
+            _scorer.Register(4);
+
+            Assert.That(_scorer.Score, Is.EqualTo(18));
+        }
     }
 }
