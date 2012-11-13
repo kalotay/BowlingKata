@@ -4,7 +4,7 @@
     {
         public TenPinScorer()
         {
-            Score = default(int);
+            Score = 0;
         }
 
         public int Score { get; private set; }
