@@ -1,9 +1,12 @@
 namespace Bowling
 {
-    public class FirstRoll: Roll
+    public struct FirstRoll: IRoll
     {
-        public FirstRoll(int score) : base(score)
+        public int Score { get; private set; }
+
+        public FirstRoll(int score): this()
         {
+            Score = score;
         }
     }
 }

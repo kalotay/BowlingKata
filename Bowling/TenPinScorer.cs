@@ -14,7 +14,7 @@
             _isBonus = false;
         }
 
-        public void Register(Roll roll)
+        public void Register(IRoll roll)
         {
             if (roll is FirstRoll)
             {

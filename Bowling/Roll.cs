@@ -1,12 +1,7 @@
 namespace Bowling
 {
-    public class Roll
+    public interface IRoll
     {
-        public int Score { get; private set; }
-
-        public Roll(int score)
-        {
-            Score = score;
-        }
+        int Score { get; }
     }
 }
