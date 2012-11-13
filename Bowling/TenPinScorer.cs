@@ -18,15 +18,7 @@
 
             Score += _scoreMultiplier * score;
 
-            if ((score + _previousScore) == 10)
-            {
-                _scoreMultiplier = 2;
-            }
-            else
-            {
-                _scoreMultiplier = 1;
-            }
-
+            _scoreMultiplier = (score + _previousScore) == 10 ? 2 : 1;
 
             _previousScore = score;
         }
