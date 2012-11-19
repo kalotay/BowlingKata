@@ -16,23 +16,21 @@
             _nextNextBonusMultiplier = 1;
         }
 
-        public void Register(IRoll roll)
+        public void Register(Roll roll)
         {
             var currentBonusMultiplier = PopBonusMultiplier();
 
-            if (roll is BonusRoll)
+            if (roll.RollNumber > 2)
             {
                 currentBonusMultiplier -= 1;
             }
 
-            var atFirstRoll = roll is FirstRoll;
-
-            if (atFirstRoll)
+            if (roll.RollNumber == 1)
             {
                 FrameScore = 0;
             }
 
-            var score = roll.Score;
+            var score = roll.PinsKnocked;
 
             FrameScore += score;
             Score += currentBonusMultiplier * score;
@@ -40,12 +38,12 @@
             PushBonusMultiplier(roll);
         }
 
-        private void PushBonusMultiplier(IRoll roll)
+        private void PushBonusMultiplier(Roll roll)
         {
             if (FrameScore == 10)
             {
                 _nextBonusMultiplier += 1;
-                if (roll is FirstRoll)
+                if (roll.RollNumber == 1)
                 {
                     _nextNextBonusMultiplier += 1;
                 }

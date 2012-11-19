@@ -16,7 +16,7 @@ namespace Bowling.Tests
         [Test]
         public void OneGutterBallScoresZero()
         {
-            _scorer.Register(new FirstRoll(0));
+            _scorer.Register(Roll.FirstRoll(0));
 
             Assert.That(_scorer.Score, Is.EqualTo(0));
         }
@@ -24,7 +24,7 @@ namespace Bowling.Tests
         [Test]
         public void OnePinKnockedDownScoresOne()
         {
-            _scorer.Register(new FirstRoll(1));
+            _scorer.Register(Roll.FirstRoll(1));
 
             Assert.That(_scorer.Score, Is.EqualTo(1));
         }
@@ -32,8 +32,8 @@ namespace Bowling.Tests
         [Test]
         public void OnePinFollowedByOnePinScoresTwo()
         {
-            _scorer.Register(new FirstRoll(1));
-            _scorer.Register(new SecondRoll(1));
+            _scorer.Register(Roll.FirstRoll(1));
+            _scorer.Register(Roll.SecondRoll(1));
 
             Assert.That(_scorer.Score, Is.EqualTo(2));
         }
@@ -41,9 +41,9 @@ namespace Bowling.Tests
         [Test]
         public void SpareFollowedByFourPinsScoresEighteen()
         {
-            _scorer.Register(new FirstRoll(7));
-            _scorer.Register(new SecondRoll(3));
-            _scorer.Register(new FirstRoll(4));
+            _scorer.Register(Roll.FirstRoll(7));
+            _scorer.Register(Roll.SecondRoll(3));
+            _scorer.Register(Roll.FirstRoll(4));
 
             Assert.That(_scorer.Score, Is.EqualTo(18));
         }
@@ -51,10 +51,10 @@ namespace Bowling.Tests
         [Test]
         public void GutterFollowedByTwoFivesFollowedByOneScoresEleven()
         {
-            _scorer.Register(new FirstRoll(0));
-            _scorer.Register(new SecondRoll(5));
-            _scorer.Register(new FirstRoll(5));
-            _scorer.Register(new SecondRoll(1));
+            _scorer.Register(Roll.FirstRoll(0));
+            _scorer.Register(Roll.SecondRoll(5));
+            _scorer.Register(Roll.FirstRoll(5));
+            _scorer.Register(Roll.SecondRoll(1));
 
             Assert.That(_scorer.Score, Is.EqualTo(11));
         }
@@ -62,9 +62,9 @@ namespace Bowling.Tests
         [Test]
         public void StrikeFollowedByThreeFollowedBySixScoresTwentyEight()
         {
-            _scorer.Register(new FirstRoll(10));
-            _scorer.Register(new FirstRoll(3));
-            _scorer.Register(new SecondRoll(6));
+            _scorer.Register(Roll.Strike());
+            _scorer.Register(Roll.FirstRoll(3));
+            _scorer.Register(Roll.SecondRoll(6));
 
             Assert.That(_scorer.Score, Is.EqualTo(28));
         }
@@ -74,11 +74,11 @@ namespace Bowling.Tests
         {
             for (var i = 0; i < 10; i++)
             {
-                _scorer.Register(new FirstRoll(10));
+                _scorer.Register(Roll.Strike());
             }
 
-            _scorer.Register(new BonusRoll(10));
-            _scorer.Register(new BonusRoll(10));
+            _scorer.Register(Roll.BonusRoll(10));
+            _scorer.Register(Roll.BonusRoll(10));
 
             Assert.That(_scorer.Score, Is.EqualTo(300));
         }
