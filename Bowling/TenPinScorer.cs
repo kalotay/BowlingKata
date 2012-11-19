@@ -37,15 +37,15 @@
             FrameScore += score;
             Score += currentBonusMultiplier * score;
 
-            PushBonusMultiplier(atFirstRoll);
+            PushBonusMultiplier(roll);
         }
 
-        private void PushBonusMultiplier(bool atFirstRoll)
+        private void PushBonusMultiplier(IRoll roll)
         {
             if (FrameScore == 10)
             {
                 _nextBonusMultiplier += 1;
-                if (atFirstRoll)
+                if (roll is FirstRoll)
                 {
                     _nextNextBonusMultiplier += 1;
                 }
