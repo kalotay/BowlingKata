@@ -39,12 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BonusRoll.cs" />
-    <Compile Include="FirstRoll.cs" />
     <Compile Include="IScorer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roll.cs" />
-    <Compile Include="SecondRoll.cs" />
     <Compile Include="TenPinScorer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
