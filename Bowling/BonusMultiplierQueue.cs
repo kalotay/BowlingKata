@@ -15,7 +15,8 @@
             {
                 case RollTypes.Strike:
                     _bonuses[2] += 1;
-                    goto case RollTypes.Spare;
+                    _bonuses[1] += 1;
+                    break;
                 case RollTypes.Spare:
                     _bonuses[1] += 1;
                     break;
