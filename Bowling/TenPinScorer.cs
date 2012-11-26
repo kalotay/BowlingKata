@@ -4,7 +4,7 @@
     {
         public int Score { get; private set; }
 
-        private readonly BonusMultiplierQueue _bonusMultiplierQueue;
+        private readonly IBonusMultiplierQueue _bonusMultiplierQueue;
 
         public TenPinScorer()
         {
@@ -14,11 +14,11 @@
 
         public void Register(IRoll roll)
         {
-            var currentBonusMultiplier = _bonusMultiplierQueue.DequeueBonusMultiplier(roll);
+            var currentBonusMultiplier = _bonusMultiplierQueue.Dequeue(roll);
 
             Score += currentBonusMultiplier * roll.PinsKnocked;
 
-            _bonusMultiplierQueue.EnqueueBonusMultiplier(roll);
+            _bonusMultiplierQueue.Enqueue(roll);
         }
     }
 }

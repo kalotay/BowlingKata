@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="BonusMultiplierQueue.cs" />
     <Compile Include="BonusRoll.cs" />
+    <Compile Include="IBonusMultiplierQueue.cs" />
     <Compile Include="NormalRoll.cs" />
     <Compile Include="IScorer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

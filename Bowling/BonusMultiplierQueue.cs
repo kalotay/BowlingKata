@@ -1,6 +1,6 @@
 ﻿namespace Bowling
 {
-    public class BonusMultiplierQueue
+    public class BonusMultiplierQueue : IBonusMultiplierQueue
     {
         private int _nextBonusMultiplier;
         private int _nextNextBonusMultiplier;
@@ -11,7 +11,7 @@
             _nextNextBonusMultiplier = 1;
         }
 
-        public void EnqueueBonusMultiplier(IRoll roll)
+        public void Enqueue(IRoll roll)
         {
             switch (roll.Type)
             {
@@ -24,7 +24,7 @@
             }
         }
 
-        public int DequeueBonusMultiplier(IRoll roll)
+        public int Dequeue(IRoll roll)
         {
             var currentBonusMultiplier = _nextBonusMultiplier;
             if (roll.Type == RollTypes.Bonus)
