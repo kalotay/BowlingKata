@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BonusMultiplierQueue.cs" />
     <Compile Include="BonusRoll.cs" />
     <Compile Include="NormalRoll.cs" />
     <Compile Include="IScorer.cs" />
