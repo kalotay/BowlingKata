@@ -28,12 +28,18 @@
         public int Dequeue()
         {
             var currentBonusMultiplier = _bonuses[0];
-            for (var i = 0; i < (_bonuses.Length - 1); i += 1)
+            ShiftBonuses();
+            return currentBonusMultiplier;
+        }
+
+        private void ShiftBonuses()
+        {
+            var lastIndex = _bonuses.Length - 1;
+            for (var i = 0; i < lastIndex; i += 1)
             {
                 _bonuses[i] = _bonuses[i + 1];
             }
-            _bonuses[_bonuses.Length - 1] = 1;
-            return currentBonusMultiplier;
+            _bonuses[lastIndex] = 1;
         }
     }
 }
