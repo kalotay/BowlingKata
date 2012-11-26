@@ -2,13 +2,11 @@
 {
     public class BonusMultiplierQueue : IBonusMultiplierQueue
     {
-        private int _nextBonusMultiplier;
-        private int _nextNextBonusMultiplier;
+        private readonly int[] _bonuses;
 
         public BonusMultiplierQueue()
         {
-            _nextBonusMultiplier = 1;
-            _nextNextBonusMultiplier = 1;
+            _bonuses = new[] {1, 1, 1};
         }
 
         public void Enqueue(IRoll roll)
@@ -16,23 +14,25 @@
             switch (roll.Type)
             {
                 case RollTypes.Strike:
-                    _nextNextBonusMultiplier += 1;
+                    _bonuses[2] += 1;
                     goto case RollTypes.Spare;
                 case RollTypes.Spare:
-                    _nextBonusMultiplier += 1;
+                    _bonuses[1] += 1;
+                    break;
+                case RollTypes.Bonus:
+                    _bonuses[0] -= 1;
                     break;
             }
         }
 
-        public int Dequeue(IRoll roll)
+        public int Dequeue()
         {
-            var currentBonusMultiplier = _nextBonusMultiplier;
-            if (roll.Type == RollTypes.Bonus)
+            var currentBonusMultiplier = _bonuses[0];
+            for (var i = 0; i < (_bonuses.Length - 1); i += 1)
             {
-                currentBonusMultiplier -= 1;
+                _bonuses[i] = _bonuses[i + 1];
             }
-            _nextBonusMultiplier = _nextNextBonusMultiplier;
-            _nextNextBonusMultiplier = 1;
+            _bonuses[_bonuses.Length - 1] = 1;
             return currentBonusMultiplier;
         }
     }

@@ -14,11 +14,10 @@
 
         public void Register(IRoll roll)
         {
-            var currentBonusMultiplier = _bonusMultiplierQueue.Dequeue(roll);
-
+            _bonusMultiplierQueue.Enqueue(roll);
+            var currentBonusMultiplier = _bonusMultiplierQueue.Dequeue();
             Score += currentBonusMultiplier * roll.PinsKnocked;
 
-            _bonusMultiplierQueue.Enqueue(roll);
         }
     }
 }

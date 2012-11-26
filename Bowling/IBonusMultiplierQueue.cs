@@ -3,6 +3,6 @@
     public interface IBonusMultiplierQueue
     {
         void Enqueue(IRoll roll);
-        int Dequeue(IRoll roll);
+        int Dequeue();
     }
 }
