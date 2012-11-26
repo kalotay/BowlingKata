@@ -2,6 +2,7 @@ namespace Bowling
 {
     public interface IRoll
     {
-        int Score { get; }
+        int PinsKnocked { get; }
+        RollTypes Type { get; }
     }
 }
