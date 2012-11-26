@@ -5,10 +5,10 @@
         private int _nextBonusMultiplier;
         private int _nextNextBonusMultiplier;
 
-        public BonusMultiplierQueue(int nextBonusMultiplier, int nextNextBonusMultiplier)
+        public BonusMultiplierQueue()
         {
-            _nextBonusMultiplier = nextBonusMultiplier;
-            _nextNextBonusMultiplier = nextNextBonusMultiplier;
+            _nextBonusMultiplier = 1;
+            _nextNextBonusMultiplier = 1;
         }
 
         public void EnqueueBonusMultiplier(IRoll roll)

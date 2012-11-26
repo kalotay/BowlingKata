@@ -9,7 +9,7 @@
         public TenPinScorer()
         {
             Score = 0;
-            _bonusMultiplierQueue = new BonusMultiplierQueue(1, 1);
+            _bonusMultiplierQueue = new BonusMultiplierQueue();
         }
 
         public void Register(IRoll roll)
