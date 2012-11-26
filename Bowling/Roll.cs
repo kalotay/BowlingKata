@@ -32,4 +32,8 @@ namespace Bowling
             return new Roll(10, 1);
         }
     }
+    public interface IRoll
+    {
+        int Score { get; }
+    }
 }
