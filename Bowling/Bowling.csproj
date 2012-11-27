@@ -47,8 +47,10 @@
     <Compile Include="DefaultImplementation\TenPinScorer.cs" />
     <Compile Include="Interface\IBonusMultiplier.cs" />
     <Compile Include="Interface\IRoll.cs" />
+    <Compile Include="Interface\IRollMapper.cs" />
     <Compile Include="Interface\IScorer.cs" />
     <Compile Include="Interface\RollTypes.cs" />
+    <Compile Include="PinsKnockedDownMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

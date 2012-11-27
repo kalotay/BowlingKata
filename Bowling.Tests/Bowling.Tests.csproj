@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BonusMultiplierTests.cs" />
+    <Compile Include="PinsKnockedDownMapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScorerIntegrationTests.cs" />
     <Compile Include="ScorerTests.cs" />
