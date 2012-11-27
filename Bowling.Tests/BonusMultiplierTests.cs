@@ -1,4 +1,5 @@
 ﻿using Bowling.DefaultImplementation;
+using Bowling.Interface;
 using NUnit.Framework;
 
 namespace Bowling.Tests
@@ -23,7 +24,7 @@ namespace Bowling.Tests
         [Test]
         public void RegisteringANormalRollLeavesTheMultiplierUnchanged()
         {
-            _bonusMultiplier.Register(new NormalRoll());
+            _bonusMultiplier.Register(RollTypes.Normal);
 
             Assert.That(_bonusMultiplier.Current, Is.EqualTo(1));
         }
