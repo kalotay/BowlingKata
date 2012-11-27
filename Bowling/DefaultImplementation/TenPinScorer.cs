@@ -1,4 +1,6 @@
-﻿namespace Bowling
+using Bowling.Interface;
+
+namespace Bowling.DefaultImplementation
 {
     public class TenPinScorer: IScorer
     {

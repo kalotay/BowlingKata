@@ -1,4 +1,4 @@
-﻿namespace Bowling
+namespace Bowling.Interface
 {
     public enum RollTypes
     {

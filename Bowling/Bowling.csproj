@@ -39,17 +39,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BonusMultiplierQueue.cs" />
-    <Compile Include="BonusRoll.cs" />
-    <Compile Include="IBonusMultiplierQueue.cs" />
-    <Compile Include="NormalRoll.cs" />
-    <Compile Include="IScorer.cs" />
+    <Compile Include="DefaultImplementation\BonusMultiplierQueue.cs" />
+    <Compile Include="DefaultImplementation\BonusRoll.cs" />
+    <Compile Include="DefaultImplementation\NormalRoll.cs" />
+    <Compile Include="DefaultImplementation\Spare.cs" />
+    <Compile Include="DefaultImplementation\Strike.cs" />
+    <Compile Include="DefaultImplementation\TenPinScorer.cs" />
+    <Compile Include="Interface\IBonusMultiplierQueue.cs" />
+    <Compile Include="Interface\IRoll.cs" />
+    <Compile Include="Interface\IScorer.cs" />
+    <Compile Include="Interface\RollTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IRoll.cs" />
-    <Compile Include="RollTypes.cs" />
-    <Compile Include="Spare.cs" />
-    <Compile Include="Strike.cs" />
-    <Compile Include="TenPinScorer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

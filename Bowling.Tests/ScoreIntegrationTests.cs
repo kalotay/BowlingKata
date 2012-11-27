@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using Bowling.DefaultImplementation;
+using Bowling.Interface;
+using NUnit.Framework;
 
 namespace Bowling.Tests
 {
