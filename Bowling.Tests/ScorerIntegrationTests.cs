@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace Bowling.Tests
 {
     [TestFixture]
-    public class ScoreIntegrationTests
+    public class ScorerIntegrationTests
     {
         private IScorer _scorer;
 
