@@ -2,7 +2,7 @@
 {
     public interface IBonusMultiplierQueue
     {
-        void Enqueue(IRoll roll);
-        int Dequeue();
+        void Register(IRoll roll);
+        int Current { get; }
     }
 }

@@ -9,8 +9,9 @@
             _bonuses = new[] {1, 1, 1};
         }
 
-        public void Enqueue(IRoll roll)
+        public void Register(IRoll roll)
         {
+            ShiftBonuses();
             switch (roll.Type)
             {
                 case RollTypes.Strike:
@@ -26,12 +27,7 @@
             }
         }
 
-        public int Dequeue()
-        {
-            var currentBonusMultiplier = _bonuses[0];
-            ShiftBonuses();
-            return currentBonusMultiplier;
-        }
+        public int Current { get { return _bonuses[0]; } }
 
         private void ShiftBonuses()
         {
