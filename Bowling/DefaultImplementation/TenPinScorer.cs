@@ -6,18 +6,18 @@ namespace Bowling.DefaultImplementation
     {
         public int Score { get; private set; }
 
-        private readonly IBonusMultiplierQueue _bonusMultiplierQueue;
+        private readonly IBonusMultiplier _bonusMultiplier;
 
         public TenPinScorer()
         {
             Score = 0;
-            _bonusMultiplierQueue = new BonusMultiplierQueue();
+            _bonusMultiplier = new BonusMultiplier();
         }
 
         public void Register(IRoll roll)
         {
-            _bonusMultiplierQueue.Register(roll);
-            var currentBonusMultiplier = _bonusMultiplierQueue.Current;
+            _bonusMultiplier.Register(roll);
+            var currentBonusMultiplier = _bonusMultiplier.Current;
             Score += currentBonusMultiplier * roll.PinsKnocked;
 
         }

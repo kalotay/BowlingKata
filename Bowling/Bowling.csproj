@@ -39,13 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DefaultImplementation\BonusMultiplierQueue.cs" />
+    <Compile Include="DefaultImplementation\BonusMultiplier.cs" />
     <Compile Include="DefaultImplementation\BonusRoll.cs" />
     <Compile Include="DefaultImplementation\NormalRoll.cs" />
     <Compile Include="DefaultImplementation\Spare.cs" />
     <Compile Include="DefaultImplementation\Strike.cs" />
     <Compile Include="DefaultImplementation\TenPinScorer.cs" />
-    <Compile Include="Interface\IBonusMultiplierQueue.cs" />
+    <Compile Include="Interface\IBonusMultiplier.cs" />
     <Compile Include="Interface\IRoll.cs" />
     <Compile Include="Interface\IScorer.cs" />
     <Compile Include="Interface\RollTypes.cs" />

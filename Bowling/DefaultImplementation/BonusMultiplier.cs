@@ -2,11 +2,11 @@ using Bowling.Interface;
 
 namespace Bowling.DefaultImplementation
 {
-    public class BonusMultiplierQueue : IBonusMultiplierQueue
+    public class BonusMultiplier : IBonusMultiplier
     {
         private readonly int[] _bonuses;
 
-        public BonusMultiplierQueue()
+        public BonusMultiplier()
         {
             _bonuses = new[] {1, 1, 1};
         }
