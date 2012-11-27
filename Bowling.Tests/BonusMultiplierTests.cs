@@ -19,5 +19,13 @@ namespace Bowling.Tests
         {
             Assert.That(_bonusMultiplier.Current, Is.EqualTo(1));
         }
+
+        [Test]
+        public void RegisteringANormalRollLeavesTheMultiplierUnchanged()
+        {
+            _bonusMultiplier.Register(new NormalRoll());
+
+            Assert.That(_bonusMultiplier.Current, Is.EqualTo(1));
+        }
     }
 }

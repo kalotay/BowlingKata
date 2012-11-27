@@ -18,10 +18,9 @@ namespace Bowling.DefaultImplementation
 
         public void Register(IRoll roll)
         {
-            _bonusMultiplier.Register(roll);
+            _bonusMultiplier.Register(roll.Type);
             var currentBonusMultiplier = _bonusMultiplier.Current;
             Score += currentBonusMultiplier * roll.PinsKnocked;
-
         }
     }
 }

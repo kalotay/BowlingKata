@@ -11,10 +11,10 @@ namespace Bowling.DefaultImplementation
             _bonuses = new[] {1, 1, 1};
         }
 
-        public void Register(IRoll roll)
+        public void Register(RollTypes rollType)
         {
             ShiftBonuses();
-            switch (roll.Type)
+            switch (rollType)
             {
                 case RollTypes.Strike:
                     _bonuses[2] += 1;

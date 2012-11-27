@@ -2,7 +2,7 @@ namespace Bowling.Interface
 {
     public interface IBonusMultiplier
     {
-        void Register(IRoll roll);
+        void Register(RollTypes rollType);
         int Current { get; }
     }
 }
