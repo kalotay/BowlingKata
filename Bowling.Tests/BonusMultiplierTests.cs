@@ -63,5 +63,24 @@ namespace Bowling.Tests
             Assert.That(second, Is.EqualTo(2));
             Assert.That(third, Is.EqualTo(2));
         }
+
+        [Test]
+        public void NormalStrikeSpareBonusSequenceHasMultipliers1122()
+        {
+            _bonusMultiplier.Register(RollTypes.Normal);
+            var first = _bonusMultiplier.Current;
+            _bonusMultiplier.Register(RollTypes.Strike);
+            var second = _bonusMultiplier.Current;
+            _bonusMultiplier.Register(RollTypes.Spare);
+            var third = _bonusMultiplier.Current;
+            _bonusMultiplier.Register(RollTypes.Bonus);
+            var fourth = _bonusMultiplier.Current;
+
+            Assert.That(first, Is.EqualTo(1));
+            Assert.That(second, Is.EqualTo(1));
+            Assert.That(third, Is.EqualTo(2));
+            Assert.That(fourth, Is.EqualTo(2));
+        }
+
     }
 }
