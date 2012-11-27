@@ -29,16 +29,13 @@ namespace Bowling.Tests
         [Test]
         public void BonusMultiplierIsCalledCorrectNumberOfTimes()
         {
-            var multiplier = Substitute.For<IBonusMultiplier>();
-            var scorer = new TenPinScorer(multiplier);
-
             _scorer.Register(new Strike());
             _scorer.Register(new Spare());
             _scorer.Register(new NormalRoll());
 
             var rollTypes = new[] {RollTypes.Strike, RollTypes.Spare, RollTypes.Normal};
 
-            var unused = _bonusMultiplier.Received(3).Current;
+            var _ = _bonusMultiplier.Received(3).Current;
             _bonusMultiplier.Received(3).Register(Arg.Is<RollTypes>(t => rollTypes.Any(t_ => t_ == t)));
             _bonusMultiplier.DidNotReceive().Register(RollTypes.Bonus);
         }
