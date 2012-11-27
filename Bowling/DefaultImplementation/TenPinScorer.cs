@@ -8,11 +8,13 @@ namespace Bowling.DefaultImplementation
 
         private readonly IBonusMultiplier _bonusMultiplier;
 
-        public TenPinScorer()
+        public TenPinScorer(IBonusMultiplier bonusMultiplier)
         {
             Score = 0;
-            _bonusMultiplier = new BonusMultiplier();
+            _bonusMultiplier = bonusMultiplier;
         }
+
+        public TenPinScorer(): this(new BonusMultiplier()) {}
 
         public void Register(IRoll roll)
         {
