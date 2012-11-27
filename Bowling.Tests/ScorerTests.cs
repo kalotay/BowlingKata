@@ -9,29 +9,61 @@ namespace Bowling.Tests
     [TestFixture]
     public class ScorerTests
     {
+        private IBonusMultiplier _bonusMultiplier;
+        private TenPinScorer _scorer;
+
+        [SetUp]
+        public void Setup()
+        {
+            _bonusMultiplier = Substitute.For<IBonusMultiplier>();
+            _scorer = new TenPinScorer(_bonusMultiplier);
+        }
+
         [Test]
         public void InitialScoreIs0()
         {
-            var multiplier = Substitute.For<IBonusMultiplier>();
-            var scorer = new TenPinScorer(multiplier);
-
-            Assert.That(scorer.Score, Is.EqualTo(0));
+            Assert.That(_scorer.Score, Is.EqualTo(0));
         }
 
+        
         [Test]
         public void BonusMultiplierIsCalledCorrectNumberOfTimes()
         {
             var multiplier = Substitute.For<IBonusMultiplier>();
             var scorer = new TenPinScorer(multiplier);
 
-            scorer.Register(new Strike());
-            scorer.Register(new Spare());
-            scorer.Register(new NormalRoll());
+            _scorer.Register(new Strike());
+            _scorer.Register(new Spare());
+            _scorer.Register(new NormalRoll());
+
             var rollTypes = new[] {RollTypes.Strike, RollTypes.Spare, RollTypes.Normal};
 
-            var unused = multiplier.Received(3).Current;
-            multiplier.Received(3).Register(Arg.Is<RollTypes>(t => rollTypes.Any(t_ => t_ == t)));
-            multiplier.DidNotReceive().Register(RollTypes.Bonus);
+            var unused = _bonusMultiplier.Received(3).Current;
+            _bonusMultiplier.Received(3).Register(Arg.Is<RollTypes>(t => rollTypes.Any(t_ => t_ == t)));
+            _bonusMultiplier.DidNotReceive().Register(RollTypes.Bonus);
+        }
+
+        [Test]
+        public void ScoreIsSumOfPinsKnockedTimesMultiplier()
+        {
+            _bonusMultiplier.Current.Returns(1, 3, 2, 0);
+
+            _scorer.Register(new Strike());
+            var first = _scorer.Score;
+
+            _scorer.Register(new Strike());
+            var second = _scorer.Score;
+
+            _scorer.Register(new Strike());
+            var third = _scorer.Score;
+
+            _scorer.Register(new Strike());
+            var fourth = _scorer.Score;
+
+            Assert.That(first, Is.EqualTo(10));
+            Assert.That(second, Is.EqualTo(40));
+            Assert.That(third, Is.EqualTo(60));
+            Assert.That(fourth, Is.EqualTo(60));
         }
     }
 }
