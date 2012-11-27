@@ -3,7 +3,7 @@
 namespace Bowling.Tests
 {
     [TestFixture]
-    public class ScorerTests
+    public class ScoreIntegrationTests
     {
         private IScorer _scorer;
 
