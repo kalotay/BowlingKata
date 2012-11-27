@@ -1,4 +1,5 @@
 using System.Linq;
+using Bowling.Interface;
 using NUnit.Framework;
 
 namespace Bowling.Tests
@@ -15,11 +16,11 @@ namespace Bowling.Tests
         }
 
         [Test]
-        public void EmptyListReturnsEmpty()
+        public void EmptyMapsToEmpty()
         {
-            var result = _mapper.Map(Enumerable.Empty<int>());
+            var actual = _mapper.Map(Enumerable.Empty<int>());
 
-            Assert.That(result, Is.Empty);
+            Assert.That(actual, Is.EquivalentTo(Enumerable.Empty<IRoll>()));
         }
 
     }
