@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BowlingScorer.cs" />
     <Compile Include="CompletedException.cs" />
     <Compile Include="Frame.cs" />
     <Compile Include="IScorer.cs" />
