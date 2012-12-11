@@ -58,5 +58,14 @@ namespace Bowling.Tests
 
             Assert.That(_frame.Score, Is.EqualTo(expected));
         }
+
+        [Test]
+        public void RegisteringTwoRollsWithScoreLessThanTenYieldsCompletedFrame()
+        {
+            _frame.Register(1);
+            _frame.Register(2);
+
+            Assert.That(_frame.IsComplete, Is.True);
+        }
     }
 }
