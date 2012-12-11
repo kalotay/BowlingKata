@@ -7,15 +7,13 @@ namespace Bowling
     public class BowlingScorer: IScorer<int>
     {
         private readonly List<IScorer<int>> _frames;
-        private int _sinceLastGen;
-        private int _frameCount;
+        private int _sinceLastGen = 0;
+        private int _frameCount = 0;
         private bool _isFrameToBeGenerated;
 
         public BowlingScorer()
         {
             _frames = new List<IScorer<int>>();
-            _sinceLastGen = 0;
-            _frameCount = 0;
         }
 
         public IComparable<int> Score
