@@ -9,6 +9,7 @@ namespace Bowling
         private readonly List<IScorer<int>> _frames;
         private int _sinceLastGen;
         private int _frameCount;
+        private int _roll;
 
         public BowlingScorer()
         {
@@ -24,7 +25,8 @@ namespace Bowling
 
         public void Register(int move)
         {
-            if (IsFrameToBeGenerated(move))
+            Register1(move);
+            if (IsFrameToBeGenerated())
             {
                 var scorer = GetInstance();
                 _frames.Add(scorer);
@@ -52,11 +54,14 @@ namespace Bowling
             get { return _frames.Count >= 10 && _frames.All(f => f.IsComplete); }
         }
 
-        private bool IsFrameToBeGenerated(int roll)
+        private bool IsFrameToBeGenerated()
         {
-            var isFrameToBeGenerated = (_frameCount < 10) && (roll == 10 || (_sinceLastGen%2) == 0);
+            return (_frameCount < 10) && (_roll == 10 || (_sinceLastGen%2) == 0);
+        }
 
-            return isFrameToBeGenerated;
+        private void Register1(int roll)
+        {
+            _roll = roll;
         }
     }
 }
