@@ -24,5 +24,17 @@ namespace Bowling.Tests
         {
             Assert.That(_frame.IsComplete, Is.False);
         }
+
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(5)]
+        [TestCase(10)]
+        public void RegisteringOneRollYieldsScoreEqualToRoll(int actualExpected)
+        {
+            _frame.Register(actualExpected);
+
+            Assert.That(_frame.Score, Is.EqualTo(actualExpected));
+        }
     }
 }
