@@ -39,18 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DefaultImplementation\BonusMultiplier.cs" />
-    <Compile Include="DefaultImplementation\BonusRoll.cs" />
-    <Compile Include="DefaultImplementation\NormalRoll.cs" />
-    <Compile Include="DefaultImplementation\Spare.cs" />
-    <Compile Include="DefaultImplementation\Strike.cs" />
-    <Compile Include="DefaultImplementation\TenPinScorer.cs" />
-    <Compile Include="Interface\IBonusMultiplier.cs" />
-    <Compile Include="Interface\IRoll.cs" />
-    <Compile Include="Interface\IRollMapper.cs" />
-    <Compile Include="Interface\IScorer.cs" />
-    <Compile Include="Interface\RollTypes.cs" />
-    <Compile Include="PinsKnockedDownMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
