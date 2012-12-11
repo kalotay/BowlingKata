@@ -2,6 +2,7 @@
 
 namespace Bowling.Tests
 {
+    [TestFixture]
     public class BowlingScorerTests
     {
         private BowlingScorer _scorer;
