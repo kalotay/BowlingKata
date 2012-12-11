@@ -44,5 +44,19 @@ namespace Bowling.Tests
 
             Assert.That(_frame.IsComplete, Is.False);
         }
+
+        [TestCase(0, 0, 0)]
+        [TestCase(1, 0, 1)]
+        [TestCase(0, 1, 1)]
+        [TestCase(5, 5, 10)]
+        [TestCase(10, 0, 10)]
+        [TestCase(0, 10, 10)]
+        public void RegisteringTwoRollsYieldsScoreEqualToSum(int first, int second, int expected)
+        {
+            _frame.Register(first);
+            _frame.Register(second);
+
+            Assert.That(_frame.Score, Is.EqualTo(expected));
+        }
     }
 }

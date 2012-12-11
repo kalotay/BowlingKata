@@ -4,16 +4,21 @@ namespace Bowling
 {
     public class Frame: IScorer<int>
     {
+        private int _score;
+
         public Frame()
         {
-            Score = 0;
+            _score = 0;
         }
 
-        public IComparable<int> Score { get; private set; }
+        public IComparable<int> Score
+        {
+            get { return _score; }
+        }
 
         public void Register(int move)
         {
-            Score = move;
+            _score += move;
         }
 
         public bool IsComplete
