@@ -26,7 +26,7 @@ namespace Bowling
 
         public bool IsComplete
         {
-            get { return _moveCount >= 2; }
+            get { return (_moveCount >= 3) || ((_moveCount >= 2) && (_score < 10)); }
         }
     }
 }
