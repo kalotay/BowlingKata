@@ -26,7 +26,7 @@ namespace Bowling
         {
             if (IsFrameToBeGenerated(move))
             {
-                var scorer = new Frame();
+                var scorer = GetInstance();
                 _frames.Add(scorer);
                 _frameCount += 1;
             }
@@ -41,6 +41,12 @@ namespace Bowling
             _sinceLastGen += 1;
         }
 
+        private IScorer<int> GetInstance()
+        {
+            _sinceLastGen = 0;
+            return new Frame();
+        }
+
         public bool IsComplete
         {
             get { return _frames.Count >= 10 && _frames.All(f => f.IsComplete); }
@@ -49,7 +55,6 @@ namespace Bowling
         private bool IsFrameToBeGenerated(int roll)
         {
             var isFrameToBeGenerated = (_frameCount < 10) && (roll == 10 || (_sinceLastGen%2) == 0);
-            if (isFrameToBeGenerated) _sinceLastGen = 0;
 
             return isFrameToBeGenerated;
         }
