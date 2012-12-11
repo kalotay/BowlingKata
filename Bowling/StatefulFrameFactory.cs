@@ -1,8 +1,8 @@
 ﻿namespace Bowling
 {
-    public class StatefulFrameFactory
+    public class StatefulFrameFactory : IStatefulFactory<IScorer<int>, int> 
     {
-        public bool IsFrameToBeGenerated { get; private set; }
+        public bool CanGenerate { get; private set; }
 
         private int _sinceLastGen;
         private int _frameCount;
@@ -11,7 +11,7 @@
         {
             _sinceLastGen = 0;
             _frameCount = 0;
-            IsFrameToBeGenerated = true;
+            CanGenerate = true;
         }
 
         public IScorer<int> GetInstance()
@@ -24,7 +24,7 @@
         public void Register(int roll)
         {
             _sinceLastGen += 1;
-            IsFrameToBeGenerated = (_frameCount == 0) || ((_frameCount < 10) && (roll == 10 || (_sinceLastGen == 2)));
+            CanGenerate = (_frameCount == 0) || ((_frameCount < 10) && (roll == 10 || (_sinceLastGen == 2)));
         }
     }
 }

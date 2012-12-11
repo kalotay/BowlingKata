@@ -23,7 +23,7 @@ namespace Bowling
         public void Register(int move)
         {
             StatefulFrameFactory.Register(move);
-            if (StatefulFrameFactory.IsFrameToBeGenerated)
+            if (StatefulFrameFactory.CanGenerate)
             {
                 var scorer = StatefulFrameFactory.GetInstance();
                 _frames.Add(scorer);
