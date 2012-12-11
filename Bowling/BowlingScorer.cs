@@ -6,12 +6,12 @@ namespace Bowling
 {
     public class BowlingScorer: IScorer<int>
     {
-        private readonly List<Frame> _frames;
+        private readonly List<IScorer<int>> _frames;
         private int _sinceLastGen;
 
         public BowlingScorer()
         {
-            _frames = new List<Frame>();
+            _frames = new List<IScorer<int>>();
             _sinceLastGen = 0;
         }
 
