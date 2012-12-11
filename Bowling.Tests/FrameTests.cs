@@ -36,5 +36,13 @@ namespace Bowling.Tests
 
             Assert.That(_frame.Score, Is.EqualTo(actualExpected));
         }
+
+        [Test]
+        public void IsIncompleteAfterOneRoll()
+        {
+            _frame.Register(0);
+
+            Assert.That(_frame.IsComplete, Is.False);
+        }
     }
 }
