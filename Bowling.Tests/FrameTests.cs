@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace Bowling.Tests
 {
@@ -99,5 +100,13 @@ namespace Bowling.Tests
             Assert.That(_frame.IsComplete, Is.True);
         }
 
+        [Test]
+        public void ThrowsCompletedExceptionIfRegisteringAfterCompletion()
+        {
+            _frame.Register(5);
+            _frame.Register(0);
+
+            Assert.Throws<CompletedException>(() => _frame.Register(1));
+        }
     }
 }

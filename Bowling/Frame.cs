@@ -20,6 +20,8 @@ namespace Bowling
 
         public void Register(int move)
         {
+            if (IsComplete) throw new CompletedException();
+
             _score += move;
             _moveCount += 1;
         }
