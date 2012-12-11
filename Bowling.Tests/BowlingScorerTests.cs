@@ -10,7 +10,7 @@ namespace Bowling.Tests
         [SetUp]
         public void SetUp()
         {
-            _scorer = new BowlingScorer();
+            _scorer = new BowlingScorer(new StatefulFrameFactory());
         }
 
         [Test]
