@@ -7,13 +7,12 @@ namespace Bowling
     public class BowlingScorer: IScorer<int>
     {
         private readonly List<IScorer<int>> _frames;
-        private int _sinceLastGen = 0;
-        private int _frameCount = 0;
-        public bool IsFrameToBeGenerated { get; private set; }
+        private readonly StatefulFrameFactory _statefulFrameFactory;
 
         public BowlingScorer()
         {
             _frames = new List<IScorer<int>>();
+            _statefulFrameFactory = new StatefulFrameFactory();
         }
 
         public IComparable<int> Score
@@ -23,10 +22,10 @@ namespace Bowling
 
         public void Register(int move)
         {
-            Register1(move);
-            if (IsFrameToBeGenerated)
+            StatefulFrameFactory.Register(move);
+            if (StatefulFrameFactory.IsFrameToBeGenerated)
             {
-                var scorer = GetInstance();
+                var scorer = StatefulFrameFactory.GetInstance();
                 _frames.Add(scorer);
             }
 
@@ -38,22 +37,14 @@ namespace Bowling
             }
         }
 
-        private IScorer<int> GetInstance()
-        {
-            _sinceLastGen = 0;
-            _frameCount += 1;
-            return new Frame();
-        }
-
         public bool IsComplete
         {
             get { return _frames.Count >= 10 && _frames.All(f => f.IsComplete); }
         }
 
-        private void Register1(int roll)
+        public StatefulFrameFactory StatefulFrameFactory
         {
-            _sinceLastGen += 1;
-            IsFrameToBeGenerated = (_frameCount == 0) || ((_frameCount < 10) && (roll == 10 || (_sinceLastGen == 2)));
+            get { return _statefulFrameFactory; }
         }
     }
 }
