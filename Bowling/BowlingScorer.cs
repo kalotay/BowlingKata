@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Bowling
 {
-    public class BowlingScorer: IScorer<int>
+    public class BowlingScorer
     {
         private readonly List<IScorer<int>> _frames;
         private readonly IStatefulFactory<IScorer<int>, int> _scorerFactory;

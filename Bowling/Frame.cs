@@ -4,8 +4,8 @@ namespace Bowling
 {
     public class Frame: IScorer<int>
     {
-        private int _score;
-        private int _moveCount;
+        private readonly int _score;
+        private readonly int _moveCount;
 
         public Frame()
         {
@@ -13,22 +13,30 @@ namespace Bowling
             _score = 0;
         }
 
-        public IComparable<int> Score
+        private Frame(int score, int moveCount)
+        {
+            _score = score;
+            _moveCount = moveCount;
+        }
+
+        public int Score
         {
             get { return _score; }
         }
 
-        public void Register(int move)
+        public IScorer<int> Register(int move)
         {
-            if (IsComplete) throw new CompletedException();
-
-            _score += move;
-            _moveCount += 1;
+            var newScore = _score + move;
+            if ((_moveCount == 2) || ((_moveCount == 1) && (newScore < 10)))
+            {
+                return new CompletedScorer<int>(newScore);
+            }
+            return new Frame(newScore, _moveCount + 1);
         }
 
         public bool IsComplete
         {
-            get { return (_moveCount >= 3) || ((_moveCount >= 2) && (_score < 10)); }
+            get { return false; }
         }
     }
 }

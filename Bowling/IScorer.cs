@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace Bowling
+﻿namespace Bowling
 {
     public interface IScorer<in T>
     {
-        IComparable<int> Score { get; }
-        void Register(T move);
+        int Score { get; }
+        IScorer<T> Register(T move);
         bool IsComplete { get; }
     }
 }

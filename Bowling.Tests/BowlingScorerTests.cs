@@ -1,16 +1,18 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
+using NUnit.Framework;
+using System.Linq;
 
 namespace Bowling.Tests
 {
     [TestFixture]
     public class BowlingScorerTests
     {
-        private BowlingScorer _scorer;
+        private IScorer<int> _scorer;
 
         [SetUp]
         public void SetUp()
         {
-            _scorer = new BowlingScorer(new StatefulFrameFactory());
+            _scorer = new BowlingScorerB();
         }
 
         [Test]
@@ -30,12 +32,8 @@ namespace Bowling.Tests
         [TestCase(new[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, true)]
         public void TestCompletion(int[] rolls, bool completion)
         {
-            foreach (var roll in rolls)
-            {
-                _scorer.Register(roll);
-            }
-
-            Assert.That(_scorer.IsComplete, Is.EqualTo(completion));
+            var scorer = rolls.Aggregate(_scorer, (current, roll) => current.Register(roll));
+            Assert.That(scorer.IsComplete, Is.EqualTo(completion));
         }
     }
 }

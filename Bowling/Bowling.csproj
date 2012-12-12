@@ -40,7 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BowlingScorer.cs" />
+    <Compile Include="BowlingScorerA.cs" />
+    <Compile Include="BowlingScorerB.cs" />
     <Compile Include="CompletedException.cs" />
+    <Compile Include="CompletedScorer.cs" />
     <Compile Include="Frame.cs" />
     <Compile Include="IScorer.cs" />
     <Compile Include="IStatefulFactory.cs" />

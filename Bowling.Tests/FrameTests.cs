@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using NUnit.Framework;
 
 namespace Bowling.Tests
@@ -33,9 +33,9 @@ namespace Bowling.Tests
         [TestCase(10)]
         public void RegisteringOneRollYieldsScoreEqualToRoll(int actualExpected)
         {
-            _frame.Register(actualExpected);
+            var frame = _frame.Register(actualExpected);
 
-            Assert.That(_frame.Score, Is.EqualTo(actualExpected));
+            Assert.That(frame.Score, Is.EqualTo(actualExpected));
         }
 
         [Test]
@@ -54,19 +54,17 @@ namespace Bowling.Tests
         [TestCase(0, 10, 10)]
         public void RegisteringTwoRollsYieldsScoreEqualToSum(int first, int second, int expected)
         {
-            _frame.Register(first);
-            _frame.Register(second);
+            var frame = (new[] {first, second}).Aggregate((IScorer <int>)_frame, (f, r) => f.Register(r));
 
-            Assert.That(_frame.Score, Is.EqualTo(expected));
+            Assert.That(frame.Score, Is.EqualTo(expected));
         }
 
         [Test]
         public void RegisteringTwoRollsWithScoreLessThanTenYieldsCompletedFrame()
         {
-            _frame.Register(1);
-            _frame.Register(2);
+            var frame = (new[] { 1, 2 }).Aggregate((IScorer<int>)_frame, (f, r) => f.Register(r));
 
-            Assert.That(_frame.IsComplete, Is.True);
+            Assert.That(frame.IsComplete, Is.True);
         }
 
         [TestCase(5, 5, 0, 10)]
@@ -74,39 +72,25 @@ namespace Bowling.Tests
         [TestCase(0, 10, 5, 15)]
         public void RegisteringThreeRollsYieldsScoreEqualToSum(int first, int second, int third, int expected)
         {
-            _frame.Register(first);
-            _frame.Register(second);
-            _frame.Register(third);
+            var frame = (new[] { first, second, third }).Aggregate((IScorer<int>)_frame, (f, r) => f.Register(r));
 
-            Assert.That(_frame.Score, Is.EqualTo(expected));
+            Assert.That(frame.Score, Is.EqualTo(expected));
         }
 
         [Test]
         public void RegisteringTwoRollsWithScoreGreaterOrEqualtToTenOnFirstTwoYieldsIncompletedFrame()
         {
-            _frame.Register(5);
-            _frame.Register(5);
+            var frame = (new[] { 5, 5 }).Aggregate((IScorer<int>)_frame, (f, r) => f.Register(r));
 
-            Assert.That(_frame.IsComplete, Is.False);
+            Assert.That(frame.IsComplete, Is.False);
         }
 
         [Test]
         public void RegisteringThreeRollsWithScoreGreaterOrEqualtToTenOnFirstTwoYieldsCompletedFrame()
         {
-            _frame.Register(5);
-            _frame.Register(5);
-            _frame.Register(5);
+            var frame = (new[] { 5, 5, 5 }).Aggregate((IScorer<int>)_frame, (f, r) => f.Register(r));
 
-            Assert.That(_frame.IsComplete, Is.True);
-        }
-
-        [Test]
-        public void ThrowsCompletedExceptionIfRegisteringAfterCompletion()
-        {
-            _frame.Register(5);
-            _frame.Register(0);
-
-            Assert.Throws<CompletedException>(() => _frame.Register(1));
+            Assert.That(frame.IsComplete, Is.True);
         }
     }
 }
