@@ -45,6 +45,8 @@
     <Compile Include="IScorer.cs" />
     <Compile Include="IStatefulFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IRollMapper.cs" />
+    <Compile Include="RollMapper.cs" />
     <Compile Include="StatefulFrameFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
