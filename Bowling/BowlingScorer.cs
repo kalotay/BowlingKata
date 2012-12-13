@@ -26,17 +26,17 @@ namespace Bowling
         {
             var updatedFrames = _frames.Select(scorer => scorer.Register(move)).ToList();
 
-            if (updatedFrames.Count(f => f.IsComplete) == 10)
+            if (AreComplete(updatedFrames))
             {
                 return new CompletedScorer<int>(updatedFrames.Sum(scorer => scorer.Score));
             }
 
-            if (_frames.Count == 10)
+            if (NoMoreFramesToGenerate())
             {
                 return new BowlingScorer(updatedFrames);
             }
 
-            if (move == 10)
+            if (WasAStrike(move))
             {
                 var newFrame = Enumerable.Repeat(new Frame(), 1);
                 return new BowlingScorer(updatedFrames.Concat(newFrame).ToList());
@@ -48,6 +48,21 @@ namespace Bowling
         public bool IsComplete
         {
             get { return false; }
+        }
+
+        private static bool AreComplete(IEnumerable<IScorer<int>> scorers)
+        {
+            return scorers.Count(f => f.IsComplete) == 10;
+        }
+
+        private bool NoMoreFramesToGenerate()
+        {
+            return _frames.Count == 10;
+        }
+
+        private static bool WasAStrike(int move)
+        {
+            return move == 10;
         }
     }
 }
