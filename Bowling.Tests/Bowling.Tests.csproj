@@ -47,9 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BowlingFilterTests.cs" />
     <Compile Include="BowlingScorerTests.cs" />
     <Compile Include="FrameTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RollMapperTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

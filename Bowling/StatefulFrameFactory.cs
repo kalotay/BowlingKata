@@ -6,6 +6,7 @@
 
         private int _sinceLastGen;
         private int _frameCount;
+        private int _previous;
 
         public StatefulFrameFactory()
         {
@@ -24,7 +25,8 @@
         public void Register(int roll)
         {
             _sinceLastGen += 1;
-            CanGenerate = (_frameCount == 0) || ((_frameCount < 10) && (roll == 10 || (_sinceLastGen == 2)));
+            CanGenerate = (_frameCount == 0) || ((_frameCount < 10) && (_previous == 10 || (_sinceLastGen == 2)));
+            _previous = roll;
         }
     }
 }
