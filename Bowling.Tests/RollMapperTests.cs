@@ -29,5 +29,13 @@ namespace Bowling.Tests
 
             Assert.That(actual, Is.EqualTo(expected));
         }
+
+        [Test]
+        public void MapsXToTen()
+        {
+            var actual = _mapper.Map('x');
+
+            Assert.That(actual, Is.EqualTo(10));
+        }
     }
 }
