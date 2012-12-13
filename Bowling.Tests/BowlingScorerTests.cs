@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
+using NUnit.Framework;
 
 namespace Bowling.Tests
 {
@@ -6,6 +7,8 @@ namespace Bowling.Tests
     public class BowlingScorerTests
     {
         private BowlingScorer _scorer;
+        private readonly BowlingFilter _filter = new BowlingFilter();
+        private readonly RollMapper _mapper = new RollMapper();
 
         [SetUp]
         public void SetUp()
@@ -25,14 +28,15 @@ namespace Bowling.Tests
             Assert.That(_scorer.IsComplete, Is.False);
         }
 
-        [TestCase(new[] { 1, 1, 1, 1 }, false)]
-        [TestCase(new[] { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10}, true)]
-        [TestCase(new[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, true)]
-        public void TestCompletion(int[] rolls, bool completion)
+        [TestCase("1111", false)]
+        [TestCase("xxxxxxxxxxxx", true)]
+        [TestCase("11111111111111111111", true)]
+        public void TestCompletion(string rolls, bool completion)
         {
-            foreach (var roll in rolls)
+            var filtered = _filter.Filter(rolls);
+            foreach (var mapped in filtered.Select(roll => _mapper.Map(roll)))
             {
-                _scorer.Register(roll);
+                _scorer.Register(mapped);
             }
 
             Assert.That(_scorer.IsComplete, Is.EqualTo(completion));
