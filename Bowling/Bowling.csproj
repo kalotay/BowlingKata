@@ -41,8 +41,7 @@
   <ItemGroup>
     <Compile Include="BowlingFilter.cs" />
     <Compile Include="BowlingScorer.cs" />
-    <Compile Include="BowlingScorerA.cs" />
-    <Compile Include="BowlingScorerB.cs" />
+    <Compile Include="BowlingScorerPrime.cs" />
     <Compile Include="CompletedException.cs" />
     <Compile Include="CompletedScorer.cs" />
     <Compile Include="Frame.cs" />

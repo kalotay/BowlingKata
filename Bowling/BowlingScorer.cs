@@ -1,45 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Bowling
 {
-    public class BowlingScorer
+    public class BowlingScorer: IScorer<int>
     {
-        private readonly List<IScorer<int>> _frames;
-        private readonly IStatefulFactory<IScorer<int>, int> _scorerFactory;
+        private readonly IReadOnlyCollection<IScorer<int>> _frames;
 
-        public BowlingScorer(IStatefulFactory<IScorer<int>, int> scorerFactory)
+        public BowlingScorer()
         {
-            _frames = new List<IScorer<int>>();
-            _scorerFactory = scorerFactory;
+            _frames = new List<IScorer<int>> { new Frame() };
         }
 
-        public IComparable<int> Score
+        internal BowlingScorer(IReadOnlyCollection<IScorer<int>> frames)
         {
-            get { return _frames.Sum(f => (int) f.Score); }
+            _frames = frames;
         }
 
-        public void Register(int move)
+        public int Score
         {
-            _scorerFactory.Register(move);
-            if (_scorerFactory.CanGenerate)
+            get { return _frames.Sum(scorer => scorer.Score); }
+        }
+
+        public IScorer<int> Register(int move)
+        {
+            var updatedFrames = _frames.Select(scorer => scorer.Register(move)).ToList();
+
+            if (updatedFrames.Count(f => f.IsComplete) == 10)
             {
-                var scorer = _scorerFactory.GetInstance();
-                _frames.Add(scorer);
+                return new CompletedScorer<int>(updatedFrames.Sum(scorer => scorer.Score));
             }
 
-            if (IsComplete) throw new CompletedException();
-
-            foreach (var frame in _frames.Where(f => !f.IsComplete))
+            if (_frames.Count == 10)
             {
-                frame.Register(move);
+                return new BowlingScorer(updatedFrames);
             }
+
+            if (move == 10)
+            {
+                var newFrame = Enumerable.Repeat(new Frame(), 1);
+                return new BowlingScorer(updatedFrames.Concat(newFrame).ToList());
+            }
+
+            return new BowlingScorerPrime(updatedFrames);
         }
 
         public bool IsComplete
         {
-            get { return _frames.Count >= 10 && _frames.All(f => f.IsComplete); }
+            get { return false; }
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Bowling.Tests
         [SetUp]
         public void SetUp()
         {
-            _scorer = new BowlingScorerA();
+            _scorer = new BowlingScorer();
         }
 
         [Test]

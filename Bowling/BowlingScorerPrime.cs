@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace Bowling
 {
-    public class BowlingScorerB: IScorer<int>
+    public class BowlingScorerPrime: IScorer<int>
     {
         private readonly IReadOnlyCollection<IScorer<int>> _frames;
 
-        internal BowlingScorerB(IReadOnlyCollection<IScorer<int>> frames)
+        internal BowlingScorerPrime(IReadOnlyCollection<IScorer<int>> frames)
         {
             _frames = frames;
         }
@@ -22,7 +22,7 @@ namespace Bowling
             var newFrame = Enumerable.Repeat(new Frame(), 1);
             var updatedFrames = _frames.Select(scorer => scorer.Register(move)).Concat(newFrame);
 
-            return new BowlingScorerA(updatedFrames.ToList());
+            return new BowlingScorer(updatedFrames.ToList());
         }
 
         public bool IsComplete
