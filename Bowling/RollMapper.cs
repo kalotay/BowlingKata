@@ -27,7 +27,7 @@ namespace Bowling
             {
                 if (!int.TryParse(input.ToString(), out result))
                 {
-                    throw new ArgumentException("Not a valid roll");
+                    throw new ArgumentException(string.Format("'{0}' is not a valid roll", input));
                 }
             }
 

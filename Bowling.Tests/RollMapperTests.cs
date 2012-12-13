@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 
 namespace Bowling.Tests
 {
@@ -54,6 +55,13 @@ namespace Bowling.Tests
             var actual = _mapper.Map('/');
 
             Assert.That(actual, Is.EqualTo(10 - previousInt));
+        }
+
+        [Test]
+        public void ThrowsExceptionOnInvalidChar()
+        {
+            var exception = Assert.Throws<ArgumentException>(() => _mapper.Map('a'));
+            Assert.That(exception.Message, Is.EqualTo("'a' is not a valid roll"));
         }
     }
 }
