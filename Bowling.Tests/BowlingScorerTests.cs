@@ -43,8 +43,8 @@ namespace Bowling.Tests
         [TestCase("x,7/,72,9/,x,x,x,23,6/,7/3", true, 168)]
         public void TestCases(string rolls, bool completion, int score)
         {
-            var filtered = _filter.Filter(rolls);
-            var scorer = filtered.Select(roll => _mapper.Map(roll))
+            var scorer = _filter.Filter(rolls)
+                .Select(roll => _mapper.Map(roll))
                 .Aggregate(_scorer, (current, roll) => current.Register(roll));
 
             Assert.That(scorer.IsComplete, Is.EqualTo(completion));
