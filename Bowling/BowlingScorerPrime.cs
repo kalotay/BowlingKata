@@ -19,10 +19,10 @@ namespace Bowling
 
         public IScorer<int> Register(int move)
         {
+            var updatedFrames = _frames.Select(scorer => scorer.Register(move));
             var newFrame = Enumerable.Repeat(new Frame(), 1);
-            var updatedFrames = _frames.Select(scorer => scorer.Register(move)).Concat(newFrame);
 
-            return new BowlingScorer(updatedFrames.ToList());
+            return new BowlingScorer(updatedFrames.Concat(newFrame).ToList());
         }
 
         public bool IsComplete
