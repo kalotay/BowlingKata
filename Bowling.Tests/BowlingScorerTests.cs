@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Collections.Generic;
+using NUnit.Framework;
 using System.Linq;
 
 namespace Bowling.Tests
@@ -13,7 +14,7 @@ namespace Bowling.Tests
         [SetUp]
         public void SetUp()
         {
-            _scorer = new BowlingScorerB();
+            _scorer = new BowlingScorerA();
         }
 
         [Test]
